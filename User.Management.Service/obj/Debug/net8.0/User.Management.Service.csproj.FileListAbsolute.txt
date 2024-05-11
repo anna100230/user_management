@@ -1,0 +1,12 @@
+C:\Learning\Crud_Mvc\User.Management.ApI\User.Management.Service\bin\Debug\net8.0\User.Management.Service.deps.json
+C:\Learning\Crud_Mvc\User.Management.ApI\User.Management.Service\bin\Debug\net8.0\User.Management.Service.dll
+C:\Learning\Crud_Mvc\User.Management.ApI\User.Management.Service\bin\Debug\net8.0\User.Management.Service.pdb
+C:\Learning\Crud_Mvc\User.Management.ApI\User.Management.Service\obj\Debug\net8.0\User.Management.Service.csproj.AssemblyReference.cache
+C:\Learning\Crud_Mvc\User.Management.ApI\User.Management.Service\obj\Debug\net8.0\User.Management.Service.GeneratedMSBuildEditorConfig.editorconfig
+C:\Learning\Crud_Mvc\User.Management.ApI\User.Management.Service\obj\Debug\net8.0\User.Management.Service.AssemblyInfoInputs.cache
+C:\Learning\Crud_Mvc\User.Management.ApI\User.Management.Service\obj\Debug\net8.0\User.Management.Service.AssemblyInfo.cs
+C:\Learning\Crud_Mvc\User.Management.ApI\User.Management.Service\obj\Debug\net8.0\User.Management.Service.csproj.CoreCompileInputs.cache
+C:\Learning\Crud_Mvc\User.Management.ApI\User.Management.Service\obj\Debug\net8.0\User.Management.Service.dll
+C:\Learning\Crud_Mvc\User.Management.ApI\User.Management.Service\obj\Debug\net8.0\refint\User.Management.Service.dll
+C:\Learning\Crud_Mvc\User.Management.ApI\User.Management.Service\obj\Debug\net8.0\User.Management.Service.pdb
+C:\Learning\Crud_Mvc\User.Management.ApI\User.Management.Service\obj\Debug\net8.0\ref\User.Management.Service.dll

@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "2/laYiq5829OB7xFBSWtkIkU0nqcdjZvAvPv5DnBdP8=",
+  "Source": "User.Management.ApI",
+  "BasePath": "_content/User.Management.ApI",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
