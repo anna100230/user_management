@@ -17,16 +17,19 @@ namespace User.Management.ApI.Controllers
     [ApiController]
     public class AuthenticationController : ControllerBase
     {
+       
         private readonly UserManager<IdentityUser> _userManager;
+        private readonly SignInManager<IdentityUser> _signInManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly ITestServiece _testServiece;
         private readonly IConfiguration _configuration;
 
-        public AuthenticationController(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager,           
+        public AuthenticationController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, RoleManager<IdentityRole> roleManager,           
             ITestServiece testServiece, IConfiguration configuration)
-        
+
         {
             _userManager = userManager;
+            _signInManager = signInManager;
             _roleManager = roleManager;
             _testServiece = testServiece;
             _configuration = configuration;
@@ -48,7 +51,8 @@ namespace User.Management.ApI.Controllers
             {
                 Email = registerUser.Email,
                 SecurityStamp = Guid.NewGuid().ToString(),
-                UserName = registerUser.UserName
+                UserName = registerUser.UserName,
+                TwoFactorEnabled =true
             };
             if (await _roleManager.RoleExistsAsync(role))
             {
@@ -123,6 +127,16 @@ namespace User.Management.ApI.Controllers
         {
             //checking user
             var user =await _userManager.FindByNameAsync(login.UserName);
+            if (user.TwoFactorEnabled)
+            {
+                await _signInManager.SignOutAsync();
+                await _signInManager.PasswordSignInAsync(user, login.Password, false, true);
+                var token = await _userManager.GenerateTwoFactorTokenAsync(user,"Email");
+                var message = new Message(new string[] { user.Email }, "OTP Confirmation", token);
+                _testServiece.SendEmail(message);
+                return StatusCode(StatusCodes.Status200OK,
+               new Response { Status = "Success", Message = $"We have sent an OTP to your Email: {user.Email}" });
+            }
             if (user != null && await _userManager.CheckPasswordAsync(user,login.Password))
             {
                 var authClaims = new List<Claim>
@@ -135,6 +149,7 @@ namespace User.Management.ApI.Controllers
                 {
                     authClaims.Add(new Claim(ClaimTypes.Role, role));
                 }
+                
                 var jwtToken =GetToken (authClaims);
 
                 return Ok(new
@@ -147,6 +162,42 @@ namespace User.Management.ApI.Controllers
             //check password
             //claim list creation
             //add role to the user
+        }
+
+        [HttpPost]
+        [Route("login_TFA")]
+        public async Task<ActionResult> LoginWithOTP(string code,string  username)
+        {
+            var user = await _userManager.FindByNameAsync(username);
+            var signIn= await _signInManager.TwoFactorSignInAsync("Email", code, false, false);
+            if (signIn.Succeeded)
+            {
+               if(user != null) 
+               {
+                    var authClaims = new List<Claim>
+                {
+                  new Claim(ClaimTypes.Name, user.UserName),
+                  new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                };
+                    var userRoles = await _userManager.GetRolesAsync(user);
+                    foreach (var role in userRoles)
+                    {
+                        authClaims.Add(new Claim(ClaimTypes.Role, role));
+                    }
+
+                    var jwtToken = GetToken(authClaims);
+
+                    return Ok(new
+                    {
+                        token = new JwtSecurityTokenHandler().WriteToken(jwtToken),
+                        expiration = jwtToken.ValidTo
+                    });
+
+               }
+
+            }
+            return StatusCode(StatusCodes.Status404NotFound,
+                   new Response { Status = "Error", Message = "Invalid Code" });
         }
 
         private JwtSecurityToken GetToken (List<Claim> authClaims)

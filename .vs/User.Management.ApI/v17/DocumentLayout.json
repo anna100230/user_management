@@ -3,20 +3,24 @@
   "WorkspaceRootPath": "C:\\Learning\\Crud_Mvc\\User.Management.ApI\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{4B63BE2E-F4C6-41CE-B1FC-B7858592DBD7}|User.Management.ApI\\User.Management.ApI.csproj|c:\\learning\\crud_mvc\\user.management.api\\user.management.api\\controllers\\authenticationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4B63BE2E-F4C6-41CE-B1FC-B7858592DBD7}|User.Management.ApI\\User.Management.ApI.csproj|solutionrelative:user.management.api\\controllers\\authenticationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{4B63BE2E-F4C6-41CE-B1FC-B7858592DBD7}|User.Management.ApI\\User.Management.ApI.csproj|c:\\learning\\crud_mvc\\user.management.api\\user.management.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{4B63BE2E-F4C6-41CE-B1FC-B7858592DBD7}|User.Management.ApI\\User.Management.ApI.csproj|solutionrelative:user.management.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4B63BE2E-F4C6-41CE-B1FC-B7858592DBD7}|User.Management.ApI\\User.Management.ApI.csproj|c:\\learning\\crud_mvc\\user.management.api\\user.management.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4B63BE2E-F4C6-41CE-B1FC-B7858592DBD7}|User.Management.ApI\\User.Management.ApI.csproj|solutionrelative:user.management.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4B63BE2E-F4C6-41CE-B1FC-B7858592DBD7}|User.Management.ApI\\User.Management.ApI.csproj|c:\\learning\\crud_mvc\\user.management.api\\user.management.api\\controllers\\authenticationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4B63BE2E-F4C6-41CE-B1FC-B7858592DBD7}|User.Management.ApI\\User.Management.ApI.csproj|solutionrelative:user.management.api\\controllers\\authenticationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{4B63BE2E-F4C6-41CE-B1FC-B7858592DBD7}|User.Management.ApI\\User.Management.ApI.csproj|c:\\learning\\crud_mvc\\user.management.api\\user.management.api\\models\\authentication\\login\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4B63BE2E-F4C6-41CE-B1FC-B7858592DBD7}|User.Management.ApI\\User.Management.ApI.csproj|solutionrelative:user.management.api\\models\\authentication\\login\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4B63BE2E-F4C6-41CE-B1FC-B7858592DBD7}|User.Management.ApI\\User.Management.ApI.csproj|c:\\learning\\crud_mvc\\user.management.api\\user.management.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4B63BE2E-F4C6-41CE-B1FC-B7858592DBD7}|User.Management.ApI\\User.Management.ApI.csproj|solutionrelative:user.management.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4B63BE2E-F4C6-41CE-B1FC-B7858592DBD7}|User.Management.ApI\\User.Management.ApI.csproj|c:\\learning\\crud_mvc\\user.management.api\\user.management.api\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4B63BE2E-F4C6-41CE-B1FC-B7858592DBD7}|User.Management.ApI\\User.Management.ApI.csproj|solutionrelative:user.management.api\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{E5700BD6-F508-4A7F-9498-1A0AE3996C32}|User.Management.Service\\User.Management.Service.csproj|c:\\learning\\crud_mvc\\user.management.api\\user.management.service\\services\\itestserviece.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -54,11 +58,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Login.cs",
               "DocumentMoniker": "C:\\Learning\\Crud_Mvc\\User.Management.ApI\\User.Management.ApI\\Models\\Authentication\\Login\\Login.cs",
               "RelativeDocumentMoniker": "User.Management.ApI\\Models\\Authentication\\Login\\Login.cs",
@@ -71,7 +75,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "ITestServiece.cs",
               "DocumentMoniker": "C:\\Learning\\Crud_Mvc\\User.Management.ApI\\User.Management.Service\\Services\\ITestServiece.cs",
               "RelativeDocumentMoniker": "User.Management.Service\\Services\\ITestServiece.cs",
@@ -83,33 +87,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Learning\\Crud_Mvc\\User.Management.ApI\\User.Management.ApI\\Program.cs",
               "RelativeDocumentMoniker": "User.Management.ApI\\Program.cs",
               "ToolTip": "C:\\Learning\\Crud_Mvc\\User.Management.ApI\\User.Management.ApI\\Program.cs",
               "RelativeToolTip": "User.Management.ApI\\Program.cs",
-              "ViewState": "AQIAAA8AAAAAAAAAAAAAABQAAABhAAAA",
+              "ViewState": "AQIAAEcAAAAAAAAAAAAQwFUAAAAYAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-10T08:41:47.879Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "AuthenticationController.cs",
               "DocumentMoniker": "C:\\Learning\\Crud_Mvc\\User.Management.ApI\\User.Management.ApI\\Controllers\\AuthenticationController.cs",
               "RelativeDocumentMoniker": "User.Management.ApI\\Controllers\\AuthenticationController.cs",
               "ToolTip": "C:\\Learning\\Crud_Mvc\\User.Management.ApI\\User.Management.ApI\\Controllers\\AuthenticationController.cs",
               "RelativeToolTip": "User.Management.ApI\\Controllers\\AuthenticationController.cs",
-              "ViewState": "AQIAAG8AAAAAAAAAAAAQwI8AAAAAAAAA",
+              "ViewState": "AQIAAKcAAAAAAAAAAAAAACMAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-10T10:16:07.376Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "EmailConfiguration.cs",
               "DocumentMoniker": "C:\\Learning\\Crud_Mvc\\User.Management.ApI\\User.Management.Service\\Models\\EmailConfiguration.cs",
               "RelativeDocumentMoniker": "User.Management.Service\\Models\\EmailConfiguration.cs",
@@ -121,7 +125,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "Message.cs",
               "DocumentMoniker": "C:\\Learning\\Crud_Mvc\\User.Management.ApI\\User.Management.Service\\Models\\Message.cs",
               "RelativeDocumentMoniker": "User.Management.Service\\Models\\Message.cs",
@@ -133,20 +137,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Learning\\Crud_Mvc\\User.Management.ApI\\User.Management.ApI\\appsettings.json",
               "RelativeDocumentMoniker": "User.Management.ApI\\appsettings.json",
               "ToolTip": "C:\\Learning\\Crud_Mvc\\User.Management.ApI\\User.Management.ApI\\appsettings.json",
               "RelativeToolTip": "User.Management.ApI\\appsettings.json",
-              "ViewState": "AQIAAAcAAAAAAAAAAAAIwBUAAABPAAAA",
+              "ViewState": "AQIAAAcAAAAAAAAAAAAIwBcAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
               "WhenOpened": "2024-05-10T09:11:10.116Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 4,
+              "Title": "AdminController.cs",
+              "DocumentMoniker": "C:\\Learning\\Crud_Mvc\\User.Management.ApI\\User.Management.ApI\\Controllers\\AdminController.cs",
+              "RelativeDocumentMoniker": "User.Management.ApI\\Controllers\\AdminController.cs",
+              "ToolTip": "C:\\Learning\\Crud_Mvc\\User.Management.ApI\\User.Management.ApI\\Controllers\\AdminController.cs",
+              "RelativeToolTip": "User.Management.ApI\\Controllers\\AdminController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAfAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-15T07:02:35.558Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "TestService.cs",
               "DocumentMoniker": "C:\\Learning\\Crud_Mvc\\User.Management.ApI\\User.Management.Service\\Services\\TestService.cs",
               "RelativeDocumentMoniker": "User.Management.Service\\Services\\TestService.cs",
@@ -158,7 +175,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "Response.cs",
               "DocumentMoniker": "C:\\Learning\\Crud_Mvc\\User.Management.ApI\\User.Management.ApI\\Models\\Response.cs",
               "RelativeDocumentMoniker": "User.Management.ApI\\Models\\Response.cs",
@@ -170,7 +187,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "ApplicationDbContext.cs",
               "DocumentMoniker": "C:\\Learning\\Crud_Mvc\\User.Management.ApI\\User.Management.ApI\\Models\\ApplicationDbContext.cs",
               "RelativeDocumentMoniker": "User.Management.ApI\\Models\\ApplicationDbContext.cs",
@@ -182,7 +199,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "RegisterUser.cs",
               "DocumentMoniker": "C:\\Learning\\Crud_Mvc\\User.Management.ApI\\User.Management.ApI\\Models\\Authentication\\SignUp\\RegisterUser.cs",
               "RelativeDocumentMoniker": "User.Management.ApI\\Models\\Authentication\\SignUp\\RegisterUser.cs",
