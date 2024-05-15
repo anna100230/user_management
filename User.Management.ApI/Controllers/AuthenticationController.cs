@@ -1,7 +1,12 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 using NETCore.MailKit.Core;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 using User.Management.ApI.Models;
+using User.Management.ApI.Models.Authentication.Login;
 using User.Management.ApI.Models.Authentication.SignUp;
 using User.Management.Service.Models;
 using User.Management.Service.Services;
@@ -15,14 +20,17 @@ namespace User.Management.ApI.Controllers
         private readonly UserManager<IdentityUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly ITestServiece _testServiece;
+        private readonly IConfiguration _configuration;
 
         public AuthenticationController(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager,           
-            ITestServiece testServiece)
+            ITestServiece testServiece, IConfiguration configuration)
         
         {
             _userManager = userManager;
             _roleManager = roleManager;
             _testServiece = testServiece;
+            _configuration = configuration;
+
         }
         [HttpPost]
 
@@ -52,9 +60,14 @@ namespace User.Management.ApI.Controllers
                 }
                 //add role to user
                 await _userManager.AddToRoleAsync(user, role);
+                //Add token to verify the mail
+                var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                var confirmationLink = Url.Action(nameof(ConfirmEmail),"Authentication", new {token,email=user.Email},Request.Scheme);
+                var message = new Message(new string[] { user.Email }, "Confirmation email link", confirmationLink!);
+                _testServiece.SendEmail(message);
 
                 return StatusCode(StatusCodes.Status200OK,
-                     new Response { Status = "Error", Message = "User Create Successfully" });
+                     new Response { Status = "Success", Message = $"User Created and email sent to {user.Email} Successfully" });
             }
             else
             {
@@ -70,7 +83,7 @@ namespace User.Management.ApI.Controllers
             //   : StatusCode(StatusCodes.Status500InternalServerError,
             //      new Response { Status = "Error", Message = "User failed to create" });
            
-            //Assaign a role
+            //Assign a role
         }
         //public IActionResult Index()
         //{
@@ -81,11 +94,72 @@ namespace User.Management.ApI.Controllers
         {
             var message =
              new Message(new string[]
-                { "receiver mail" }, "Test", "Hello you...");
+                { "ashikuzzaman18@gmail.com" }, "Test", "Hello you...");
             _testServiece.SendEmail(message);
             return StatusCode(StatusCodes.Status200OK,
                 new Response { Status = "Success", Message = "Email Sent Successfully" });
 
+        }
+        [HttpGet("ConfirmEmail")]
+        public async Task <IActionResult> ConfirmEmail (string token,string email)
+        {
+            var user = await _userManager.FindByEmailAsync(email);
+            if (user != null)
+            { 
+                var result = await _userManager.ConfirmEmailAsync(user, token);
+                if (result.Succeeded)
+                {
+                    return StatusCode(StatusCodes.Status200OK,
+                    new Response { Status = "Success", Message = "Email Verified Successfully" });
+                }
+            }
+            return StatusCode(StatusCodes.Status500InternalServerError,
+                    new Response { Status = "Error", Message = "This user doesn't exist" });
+        }
+
+        [HttpPost]
+        [Route("login")]
+        public async Task <ActionResult> Login([FromBody] Login login)
+        {
+            //checking user
+            var user =await _userManager.FindByNameAsync(login.UserName);
+            if (user != null && await _userManager.CheckPasswordAsync(user,login.Password))
+            {
+                var authClaims = new List<Claim>
+                {
+                  new Claim(ClaimTypes.Name, user.UserName),
+                  new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                };
+                var userRoles = await _userManager.GetRolesAsync(user);
+                foreach (var role in userRoles)
+                {
+                    authClaims.Add(new Claim(ClaimTypes.Role, role));
+                }
+                var jwtToken =GetToken (authClaims);
+
+                return Ok(new
+                {
+                    token =new JwtSecurityTokenHandler ().WriteToken(jwtToken),
+                    expiration =jwtToken.ValidTo
+                });
+            }
+            return Unauthorized();
+            //check password
+            //claim list creation
+            //add role to the user
+        }
+
+        private JwtSecurityToken GetToken (List<Claim> authClaims)
+        {
+            var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Secret"]));
+            var token = new JwtSecurityToken(
+                issuer: _configuration["JWT:ValidIssuer"],
+                audience: _configuration["JWT:ValidAudience"],
+                expires:DateTime.Now.AddHours(3),
+                claims:authClaims,
+                signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256)
+                );
+            return token;
         }
     }
 }

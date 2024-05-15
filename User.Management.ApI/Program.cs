@@ -17,6 +17,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(Options=> Options.UseSqlServ
 builder.Services.AddIdentity<IdentityUser, IdentityRole>()
         .AddEntityFrameworkStores<ApplicationDbContext>()
         .AddDefaultTokenProviders();
+//Add config for Required email
+builder.Services.Configure<IdentityOptions>(options =>options.SignIn.RequireConfirmedEmail=true);
 
 //Adding Authentication
 builder.Services.AddAuthentication(Options =>

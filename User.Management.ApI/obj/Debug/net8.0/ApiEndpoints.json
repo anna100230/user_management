@@ -31,6 +31,27 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "User.Management.ApI.Controllers.AuthenticationController",
+    "Method": "ConfirmEmail",
+    "RelativePath": "api/controller/ConfirmEmail",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "token",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "email",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "User.Management.ApI.Controllers.WeatherForecastController",
     "Method": "Get",
     "RelativePath": "WeatherForecast",

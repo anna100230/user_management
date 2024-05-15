@@ -147,3 +147,4 @@ C:\Learning\Crud_Mvc\User.Management.ApI\User.Management.ApI\obj\Debug\net8.0\re
 C:\Learning\Crud_Mvc\User.Management.ApI\User.Management.ApI\obj\Debug\net8.0\User.Management.ApI.pdb
 C:\Learning\Crud_Mvc\User.Management.ApI\User.Management.ApI\obj\Debug\net8.0\User.Management.ApI.genruntimeconfig.cache
 C:\Learning\Crud_Mvc\User.Management.ApI\User.Management.ApI\obj\Debug\net8.0\ref\User.Management.ApI.dll
+C:\Learning\Crud_Mvc\User.Management.ApI\User.Management.ApI\obj\Debug\net8.0\User.Management.ApI.sourcelink.json
