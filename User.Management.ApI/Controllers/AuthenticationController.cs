@@ -1,7 +1,10 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using NETCore.MailKit.Core;
+using System.ComponentModel.DataAnnotations;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -121,63 +124,107 @@ namespace User.Management.ApI.Controllers
                     new Response { Status = "Error", Message = "This user doesn't exist" });
         }
 
+        //[HttpPost]
+        //[Route("login")]
+        //public async Task <ActionResult> Login([FromBody] Login login)
+        //{
+        //    //checking user
+        //    var user =await _userManager.FindByNameAsync(login.UserName);
+        //    if (user.TwoFactorEnabled)
+        //    {
+        //        await _signInManager.SignOutAsync();
+        //        await _signInManager.PasswordSignInAsync(user, login.Password, false, true);
+        //        var token = await _userManager.GenerateTwoFactorTokenAsync(user,"Email");
+        //        var message = new Message(new string[] { user.Email }, "OTP Confirmation", token);
+        //        _testServiece.SendEmail(message);
+        //        return StatusCode(StatusCodes.Status200OK,
+        //       new Response { Status = "Success", Message = $"We have sent an OTP to your Email: {user.Email}" });
+        //    }
+        //    if (user != null && await _userManager.CheckPasswordAsync(user,login.Password))
+        //    {
+        //        var authClaims = new List<Claim>
+        //        {
+        //          new Claim(ClaimTypes.Name, user.UserName),
+        //          new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+        //        };
+        //        var userRoles = await _userManager.GetRolesAsync(user);
+        //        foreach (var role in userRoles)
+        //        {
+        //            authClaims.Add(new Claim(ClaimTypes.Role, role));
+        //        }
+
+        //        var jwtToken =GetToken (authClaims);
+
+        //        return Ok(new
+        //        {
+        //            token =new JwtSecurityTokenHandler ().WriteToken(jwtToken),
+        //            expiration =jwtToken.ValidTo
+        //        });
+        //    }
+        //    return Unauthorized();
+        //    //check password
+        //    //claim list creation
+        //    //add role to the user
+        //}
         [HttpPost]
         [Route("login")]
-        public async Task <ActionResult> Login([FromBody] Login login)
+        public async Task<IActionResult> Login([FromBody] Login login)
         {
-            //checking user
-            var user =await _userManager.FindByNameAsync(login.UserName);
+            var user = await _userManager.FindByNameAsync(login.UserName);
             if (user.TwoFactorEnabled)
             {
                 await _signInManager.SignOutAsync();
                 await _signInManager.PasswordSignInAsync(user, login.Password, false, true);
-                var token = await _userManager.GenerateTwoFactorTokenAsync(user,"Email");
-                var message = new Message(new string[] { user.Email }, "OTP Confirmation", token);
+                var token = await _userManager.GenerateTwoFactorTokenAsync(user, "Email");
+
+                var message = new Message(new string[] { user.Email! }, "OTP Confrimation", token);
                 _testServiece.SendEmail(message);
+
                 return StatusCode(StatusCodes.Status200OK,
-               new Response { Status = "Success", Message = $"We have sent an OTP to your Email: {user.Email}" });
+                 new Response { Status = "Success", Message = $"We have sent an OTP to your Email {user.Email}" });
             }
-            if (user != null && await _userManager.CheckPasswordAsync(user,login.Password))
+            if (user != null && await _userManager.CheckPasswordAsync(user, login.Password))
             {
                 var authClaims = new List<Claim>
                 {
-                  new Claim(ClaimTypes.Name, user.UserName),
-                  new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                    new Claim(ClaimTypes.Name, user.UserName),
+                    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 };
                 var userRoles = await _userManager.GetRolesAsync(user);
                 foreach (var role in userRoles)
                 {
                     authClaims.Add(new Claim(ClaimTypes.Role, role));
                 }
-                
-                var jwtToken =GetToken (authClaims);
+
+
+                var jwtToken = GetToken(authClaims);
 
                 return Ok(new
                 {
-                    token =new JwtSecurityTokenHandler ().WriteToken(jwtToken),
-                    expiration =jwtToken.ValidTo
+                    token = new JwtSecurityTokenHandler().WriteToken(jwtToken),
+                    expiration = jwtToken.ValidTo
                 });
+                //returning the token...
+
             }
             return Unauthorized();
-            //check password
-            //claim list creation
-            //add role to the user
-        }
 
+
+        }
         [HttpPost]
-        [Route("login_TFA")]
-        public async Task<ActionResult> LoginWithOTP(string code,string  username)
+        [Route("login-2FA")]
+        public async Task<IActionResult> LoginWithOTP(string code, string username)
         {
             var user = await _userManager.FindByNameAsync(username);
-            var signIn= await _signInManager.TwoFactorSignInAsync("Email", code, false, false);
+            var signIn = await _signInManager.TwoFactorSignInAsync("Email", code, false, false);
             if (signIn.Succeeded)
             {
-               if(user != null) 
-               {
+                if (user != null)
+                {
                     var authClaims = new List<Claim>
                 {
-                  new Claim(ClaimTypes.Name, user.UserName),
-                  new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                    new Claim(ClaimTypes.Name, user.UserName),
+                    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 };
                     var userRoles = await _userManager.GetRolesAsync(user);
                     foreach (var role in userRoles)
@@ -192,13 +239,14 @@ namespace User.Management.ApI.Controllers
                         token = new JwtSecurityTokenHandler().WriteToken(jwtToken),
                         expiration = jwtToken.ValidTo
                     });
+                    //returning the token...
 
-               }
-
+                }
             }
             return StatusCode(StatusCodes.Status404NotFound,
-                   new Response { Status = "Error", Message = "Invalid Code" });
+                new Response { Status = "Success", Message = $"Invalid Code" });
         }
+      
 
         private JwtSecurityToken GetToken (List<Claim> authClaims)
         {

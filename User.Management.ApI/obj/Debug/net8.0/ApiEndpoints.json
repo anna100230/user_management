@@ -32,6 +32,43 @@
   },
   {
     "ContainingType": "User.Management.ApI.Controllers.AuthenticationController",
+    "Method": "ForgotPassword",
+    "RelativePath": "api/controller",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "email",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "User.Management.ApI.Controllers.AuthenticationController",
+    "Method": "ResetPassword",
+    "RelativePath": "api/controller",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "token",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "email",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "User.Management.ApI.Controllers.AuthenticationController",
     "Method": "ConfirmEmail",
     "RelativePath": "api/controller/ConfirmEmail",
     "HttpMethod": "GET",
@@ -90,7 +127,7 @@
   {
     "ContainingType": "User.Management.ApI.Controllers.AuthenticationController",
     "Method": "LoginWithOTP",
-    "RelativePath": "api/controller/login_TFA",
+    "RelativePath": "api/controller/login-2FA",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
